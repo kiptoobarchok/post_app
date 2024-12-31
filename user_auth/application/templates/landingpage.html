@@ -1,0 +1,18 @@
+{% extends  "base.html" %}
+
+{% block content %}
+    <li>Home </li>
+    <li>my account </li>
+    <li>log in if anon and log out if authenticated</li>
+    <li> if anon sign up </li>
+    
+    <fieldset>
+        <legend>landing page </legend>
+        
+        <p>my landing page</p>
+
+        <li><a href="{{url_for('home')}}"><b>Home</b></a></li>
+
+    </fieldset>
+
+{% endblock content %}

@@ -1,0 +1,43 @@
+{% extends  "base.html" %}
+
+{% block content %}
+    <li>Home </li>
+    <li>my account </li>
+    <li>log in if anon and log out if authenticated</li>
+    <li> if anon sign up </li>
+    <li>Perform crud operations on posts</li>
+    
+    <fieldset>
+        <legend>landing page </legend>
+        
+        {% if current_user.is_anonymous %}
+            <li><a href="{{url_for('signup')}}">sign up</a></li>
+            <li><a href="{{url_for('login')}}">log in</a></li>
+        {% else %}
+            <li><a href="{{url_for('account')}}">account</a></li>
+            <li><a href="{{url_for('new_post')}}">create a new post</a></li>
+            <li><a href="{{url_for('logout')}}">log out</a></li>
+        {% endif %}
+
+        <li><a href="{{url_for('require_loggedin')}}"><b>require_logged in</b></a></li>
+
+    </fieldset> 
+        {% for post in posts.items %}
+        <fieldset>
+            <i>{{ post.author.username }}</div></i><div>
+            <u><a href="{{url_for('post', post_id=post.id)}}"><div>{{ post.title }}</div></a></u>
+            <div><b>{{ post.content}}</b></div>
+            <div>{{ post.date_posted.strftime('%d-%m-%Y')}}</div> <br>
+        </fieldset>
+             
+        {% endfor %}
+
+        {% for page_num in posts.iter_pages() %}
+            {% if page_num %}
+                <a href="{{url_for('home', page=page_num)}}">{{ page_num }}</a>
+            {% else %}
+            ...
+            {% endif%}
+        {% endfor %}
+
+{% endblock content %}

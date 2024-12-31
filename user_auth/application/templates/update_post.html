@@ -1,0 +1,26 @@
+{% extends "base.html"%}
+
+{% block content %}
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    <fieldset>
+        <div>
+            {{ form.title.label }} <br>
+            {{ form.title}} <br>
+            {% for error in form.title.errors %}
+                <span style="color: brown;">[{{error}}]</span>
+            {% endfor%}
+        </div>
+        <div>
+            {{ form.content.label }} <br>
+            {{ form.content}} <br>
+            {% for error in form.content.errors %}
+            <span style="color: brown;">[{{error}}]</span>
+        {% endfor%}
+        </div>
+        <div>
+            {{form.submit}}
+        </div>
+    </fieldset>
+</form>
+{%endblock content%}

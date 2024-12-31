@@ -1,0 +1,14 @@
+{% extends "base.html"%}
+
+{% block content %}
+<fieldset>
+    <i>{{ post.author.username }}</div></i><div>
+    <h5><u>{{post.title}}</u></h5>
+    <div><b>{{ post.content}}</b></div>
+    <div>{{ post.date_posted.strftime('%d-%m-%Y')}}</div> <br>
+    <u><button><a href="{{url_for('update_post', post_id=post.id)}}">Update my post</a></button></u>
+    <button><a href="{{url_for('delete_post', post_id=post.id)}}">Delete Post</a></button>
+
+</fieldset>
+     
+{%endblock content%}

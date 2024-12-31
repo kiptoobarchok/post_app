@@ -1,0 +1,52 @@
+{% extends  "base.html" %}
+
+{% block content %}
+  <div>
+    <img src="{{ image_file}}" alt="">
+  </div>
+  <form action="" method = POST enctype="multipart/form-data">
+    {{form.hidden_tag()}}
+    <div>
+        {{ form.fullname.label}} <br>
+        <b>{{ form.fullname }}</b>
+        {% for err in form.fullname.errors %}
+            <span style="color: brown;">[{{err}}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.username.label}} <br>
+        {{ form.username }}
+        {% for err in form.username.errors %}
+            <span style="color: brown;">[{{err}}]</span>
+        {% endfor %}
+    </div>
+    <div>
+        {{ form.email.label}} <br>
+        {{ form.email }}
+        {% for err in form.email.errors %}
+            <span style="color: brown;">[{{err}}]</span>
+        {% endfor %}
+    </div> <br>
+    <div>
+        {{ form.profile.label() }}
+        {{ form.profile}} <br>
+        {% if form.profile.errors %}
+            {% for err in form.profile.errors %}
+                <span style="color: brown;">[{{ err }}]</span> <br>
+            {% endfor %}
+        {% endif  %}
+    </div>
+    <div>
+        {{form.submit}}
+    </div>
+    
+  </form>
+
+  <fieldset>
+    <legend>My posts</legend>
+    {% for post in posts%}
+        <a href="{{url_for('post', post_id=post.id)}}"><span style="color: darkgreen;">[{{post}}]</span> <br></a>
+    {% endfor%}
+  </fieldset>
+<small> <a href="{{url_for('home')}}">Home</a></small>
+{% endblock content %}

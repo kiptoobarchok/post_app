@@ -1,0 +1,40 @@
+{% extends  "base.html" %}
+
+{% block content %}
+<form action="" method="POST">
+    <fieldset>
+    <legend>log in</legend>
+    {{ form.hidden_tag() }}
+
+    <div>
+        {{ form.email.label}} <br>
+        {{ form.email }}
+        {% for err in form.email.errors%}
+            <span style="color: brown;">[{{ err }}]</span>
+        {% endfor %}
+    </div><br>
+    <div>
+        {{ form.password.label}} <br>
+        {{ form.password }}
+        {% for message in get_flashed_messages() %}
+            <span style="color: brown;">[{{ message }}]</span>
+        {% endfor %}
+    </div><br>
+    <div>
+        {{ form.submit }}
+    </div><br>
+    <div>
+        {{form.remember}}
+        {{ form.remember.label }}
+    </div>
+
+    </fieldset>
+</form>
+
+
+
+<small><b><a href="{{url_for('home')}}">Home</a></b></small><br>
+
+<small>don't have an account...? <a href="{{url_for('signup')}}">join us</a></small>
+
+{% endblock content %}
